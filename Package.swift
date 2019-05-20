@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "FilenameParser",
+    products: [
+        .executable(name: "filename-parser", targets: ["FilenameParser"]),
+    ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
