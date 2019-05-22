@@ -61,7 +61,7 @@ private func logGroupedResult(grouped: [String: [String: [StickerData]]]) {
     level += 1
     printMessage(with: level, "return [")
     level += 1
-    for (category, packs) in grouped {
+    for (category, packs) in grouped.sorted(by: { $0.key > $1.key }) {
         logCategory(category, packs: packs, level: &level)
     }
     level -= 1
@@ -78,7 +78,7 @@ private func logCategory(_ category: String, packs: [String: [StickerData]], lev
     printMessage(with: level, "name: \"\(category)\",")
     printMessage(with: level, "packs: [")
     level += 1
-    for (pack, stickers) in packs {
+    for (pack, stickers) in packs.sorted(by: { $0.key > $1.key }) {
         logPack(pack, stickers: stickers, level: &level)
     }
     level -= 1
@@ -94,7 +94,7 @@ private func logPack(_ pack: String, stickers: [StickerData], level: inout Int) 
     printMessage(with: level, "stickers: [")
     level += 1
 
-    for sticker in stickers {
+    for sticker in stickers.sorted(by: { $0.filename > $1.filename }) {
         logSticker(sticker, level: &level)
     }
 
