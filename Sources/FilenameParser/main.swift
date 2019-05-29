@@ -15,17 +15,19 @@ func main() {
 
     var result: [StickerData] = []
     for file in contents.sorted() where !file.hasSuffix("+mask.imageset") {
-        let filename = file.dropLast(9).replacingOccurrences(of: "_", with: " ")
-        let array = filename.split(separator: "+").map { String($0) }
+        let filename = file.dropLast(9)
+        let array = filename
+            .replacingOccurrences(of: "_", with: " ")
+            .split(separator: "+").map { String($0) }
         guard array.count == 8 else {
             continue
         }
         guard let packNumber = Int(array[2]),
-              let coordX = Int(array[3]),
-              let coordY = Int(array[4]),
-              let deltaX = Int(array[5]),
-              let deltaY = Int(array[6]),
-              let angle = Int(array[7]) else {
+            let coordX = Int(array[3]),
+            let coordY = Int(array[4]),
+            let deltaX = Int(array[5]),
+            let deltaY = Int(array[6]),
+            let angle = Int(array[7]) else {
             print("failed to get data for sticker \(filename)")
             continue
         }
@@ -40,7 +42,7 @@ func main() {
                 deltaX: deltaX,
                 deltaY: deltaY,
                 angle: angle
-            )
+            ),
         ]
     }
     logGroupedResult(
@@ -48,9 +50,9 @@ func main() {
             grouping: result,
             by: { $0.categoryName }
         )
-            .mapValues { value in
-                Dictionary(grouping: value, by: { $0.packName })
-            }
+        .mapValues { value in
+            Dictionary(grouping: value, by: { $0.packName })
+        }
     )
 }
 
