@@ -93,7 +93,7 @@ private func logPack(_ pack: String, stickers: [StickerData], level: inout Int) 
     printMessage(with: level, "StickerPack(")
     level += 1
     printMessage(with: level, "name: \"\(pack)\",")
-    printMessage(with: level, "stickers: [")
+    printMessage(with: level, "realStickers: [")
     level += 1
 
     for sticker in stickers.sorted(by: { $0.filename < $1.filename }) {
