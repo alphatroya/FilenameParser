@@ -110,7 +110,7 @@ private func logSticker(_ sticker: StickerData, level: inout Int) {
     printMessage(with: level, "Sticker(")
     level += 1
     printMessage(with: level, "imageName: \"\(sticker.filename)\",")
-    printMessage(with: level, "number: \"\(sticker.packNumber)\",")
+    printMessage(with: level, "number: \(sticker.packNumber),")
     printMessage(with: level, "maskCenter: CGPoint(x: \(sticker.coordX), y: \(sticker.coordY)),")
     printMessage(
         with: level,
